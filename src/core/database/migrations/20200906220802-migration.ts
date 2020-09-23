@@ -1,4 +1,5 @@
 import { QueryInterface, DataTypes } from 'sequelize';
+import { Permission } from '../../../modules/groups/dto/group.dto';
 
 
 /**
@@ -14,11 +15,7 @@ export async function up(query: QueryInterface) {
         allowNull: false,
         autoIncrement: true,
       },
-      name: {
-        type: new DataTypes.STRING(255),
-        allowNull: false,
-      },
-      email: {
+      login: {
         type: new DataTypes.STRING(255),
         allowNull: false,
         unique: true,
@@ -27,33 +24,29 @@ export async function up(query: QueryInterface) {
         type: new DataTypes.STRING(255),
         allowNull: false,
       },
-      gender: {
-        type: new DataTypes.ENUM('male', 'female'),
+      age: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
+      isDeleted: {
+        type: DataTypes.BOOLEAN,
         allowNull: false,
       },
     });
 
-    await query.createTable('Posts', {
+    await query.createTable('Groups', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
       },
-      title: {
+      name: {
         type: new DataTypes.STRING(255),
         allowNull: false,
       },
-      body: {
-        type: new DataTypes.TEXT(),
+      permissions: {
+        type: new DataTypes.ENUM(...Object.values(Permission)),
         allowNull: false,
       },
       userId: {
@@ -66,13 +59,28 @@ export async function up(query: QueryInterface) {
         onUpdate: 'cascade',
         onDelete: 'cascade',
       },
-      createdAt: {
-        type: DataTypes.DATE,
+    });
+
+    await query.createTable('UserGroups', {
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        },
         allowNull: false,
+        onUpdate: 'cascade',
+        onDelete: 'cascade',
       },
-      updatedAt: {
-        type: DataTypes.DATE,
+      groupId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Groups',
+          key: 'id'
+        },
         allowNull: false,
+        onUpdate: 'cascade',
+        onDelete: 'cascade',
       },
     });
   } catch (e) {
@@ -88,6 +96,7 @@ export async function down(query: QueryInterface) {
   try {
     await query.dropTable('Posts');
     await query.dropTable('Users');
+    await query.dropTable('UserGroups');
   } catch (e) {
     return Promise.reject(e);
   }

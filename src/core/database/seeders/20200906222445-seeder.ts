@@ -9,68 +9,67 @@ export async function up(queryInterface: QueryInterface) {
   try {
     await queryInterface.bulkInsert('Users', [
       {
-        id: 1,
-        name: 'Candie Willmont',
-        email: 'cwillmont0@nsw.gov.au',
-        password: 'BzhJ7UZRfOOS',
-        gender: 'female',
-      },
+        'id': 1,
+        'login': 'gbarkaway0',
+        'password': 'ElMAJlb3d4dg',
+        'age': 18,
+        'isDeleted': true
+      }, {
+        'id': 2,
+        'login': 'fwileman1',
+        'password': 'QAy4U2Wvf',
+        'age': 62,
+        'isDeleted': true
+      }, {
+        'id': 3,
+        'login': 'rbeveredge2',
+        'password': '2oIQ7Vv',
+        'age': 37,
+        'isDeleted': true
+      }, {
+        'id': 4,
+        'login': 'dmcreynold3',
+        'password': 'ZqPyQZgg0Z6',
+        'age': 41,
+        'isDeleted': true
+      }, {
+        'id': 5,
+        'login': 'jafar',
+        'password': '12345',
+        'age': 25,
+        'isDeleted': false
+      }
+    ]);
+
+    await queryInterface.bulkInsert('Groups', [
       {
-        id: 2,
-        name: 'Alano Voss',
-        email: 'avoss1@webmd.com',
-        password: 'OwpfXZw4ZH',
-        gender: 'male',
-      },
-      {
-        id: 3,
-        name: 'Priscilla Beyn',
-        email: 'pbeyn2@artisteer.com',
-        password: 'InPUO8fY',
-        gender: 'female',
-      },
-      {
-        id: 4,
-        name: 'Goldia McKibbin',
-        email: 'gmckibbin3@paginegialle.it',
-        password: 'VPvwNK35Smee',
-        gender: 'female',
-      },
-      {
-        id: 5,
-        name: 'Rhodie Mettrick',
-        email: 'rmettrick4@google.fr',
-        password: 'zOtoxuji',
-        gender: 'female',
+        'id': 1,
+        'name': 'root',
+        'permissions': 'read',
+      }, {
+        'id': 2,
+        'name': 'admin',
+        'permissions': 'read',
+      }, {
+        'id': 3,
+        'name': 'guest',
+        'permissions': 'delete',
       },
     ]);
 
-    await queryInterface.bulkInsert('Posts', [
+    await queryInterface.bulkInsert('UserGroups', [
       {
-        title: 'Sink or Swim',
-        body: 'Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.',
-        userId: 1,
+        'userId': 5,
+        'groupId': 1,
       },
       {
-        title: 'Merchant of Venice, The',
-        body: 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.',
-        userId: 2,
+        'userId': 2,
+        'groupId': 2,
       },
       {
-        title: 'Free Radicals (Böse Zellen)',
-        body: 'Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum.',
-        userId: 3,
+        'userId': 3,
+        'groupId': 3,
       },
-      {
-        title: 'Cinderella',
-        body: 'Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.',
-        userId: 3,
-      },
-      {
-        title: 'Belle comme la femme dun autre',
-        body: 'Aliquam sit amet diam in magna bibendum imperdiet. Anatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.',
-        userId: 5,
-      }
     ]);
   } catch(e) {
     return Promise.reject(e);
@@ -83,8 +82,9 @@ export async function up(queryInterface: QueryInterface) {
  */
 export async function down(queryInterface: QueryInterface) {
   try {
-    await queryInterface.bulkDelete('Posts', null, {});
     await queryInterface.bulkDelete('Users', null, {});
+    await queryInterface.bulkDelete('Groups', null, {});
+    await queryInterface.bulkDelete('UserGroups', null, {});
   } catch (e) {
     return Promise.reject(e);
   }
