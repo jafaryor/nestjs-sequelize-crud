@@ -1,2 +1,3 @@
 export { User } from '../../../modules/users/user.entity';
-export { Post } from '../../../modules/posts/post.entity';
+export { Group } from '../../../modules/groups/group.entity';
+export { UserGroup } from '../../../modules/user-groups/user-group.entity';

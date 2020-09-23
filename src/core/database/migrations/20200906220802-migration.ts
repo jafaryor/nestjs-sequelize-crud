@@ -9,7 +9,7 @@ export async function up(query: QueryInterface) {
   try {
     await query.createTable('Users', {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,

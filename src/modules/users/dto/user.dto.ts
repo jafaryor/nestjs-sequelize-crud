@@ -1,30 +1,33 @@
-import { IsNotEmpty, MinLength, IsEmail, IsEnum } from 'class-validator';
+import { IsNotEmpty, MinLength, Min, Max, IsInt, IsBoolean, IsString, IsAlphanumeric, IsPositive } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-
-enum Gender {
-  MALE = 'male',
-  FEMALE = 'female',
-}
 
 export class UserDto {
   @ApiProperty()
   @IsNotEmpty()
-  readonly name: string;
+  @IsInt()
+  @IsPositive()
+  readonly id: number;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsEmail()
-  readonly email: string;
+  @IsAlphanumeric()
+  readonly login: string;
 
   @ApiProperty()
   @IsNotEmpty()
+  @IsString()
   @MinLength(6)
   readonly password: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsEnum(Gender, {
-    message: 'gender must be either male or female',
-  })
-  readonly gender: Gender;
+  @IsInt()
+  @Min(4)
+  @Max(130)
+  readonly age: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsBoolean()
+  readonly isDeleted: boolean;
 }

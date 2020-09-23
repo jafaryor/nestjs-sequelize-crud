@@ -3,7 +3,8 @@ import { Sequelize } from 'sequelize-typescript';
 import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
 import { User } from '../../modules/users/user.entity';
-import { Post } from '../../modules/posts/post.entity';
+import { Group } from '../../modules/groups/group.entity';
+import { UserGroup } from '../../modules/user-groups/user-group.entity';
 
 
 export const databaseProviders = [
@@ -28,7 +29,7 @@ export const databaseProviders = [
 
       const sequelize = new Sequelize(config);
 
-      sequelize.addModels([User, Post]);
+      sequelize.addModels([User, Group, UserGroup]);
       await sequelize.sync();
 
       return sequelize;

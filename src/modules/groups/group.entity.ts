@@ -1,16 +1,17 @@
 import { Table, Column, Model, DataType, BelongsToMany } from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
-import { Group } from '../groups/group.entity';
+import { Permission } from './dto/group.dto';
+import { User } from '../users/user.entity';
 import { UserGroup } from '../user-groups/user-group.entity';
 
 
 @Table({
   // The table name in database.
-  tableName: 'Users',
+  tableName: 'Groups',
   // Don't add the timestamp attributes (updatedAt, createdAt).
   timestamps: false,
 })
-export class User extends Model<User> {
+export class Group extends Model<Group> {
   @ApiProperty()
   @Column({
     type: DataType.INTEGER.UNSIGNED,
@@ -22,33 +23,20 @@ export class User extends Model<User> {
   @ApiProperty()
   @Column({
     type: DataType.STRING,
-    unique: true,
     allowNull: false,
   })
-  login: string;
+  name: string;
 
   @ApiProperty()
   @Column({
-    type: DataType.STRING,
+    type: DataType.ARRAY(DataType.ENUM({
+      values: Object.values(Permission)
+    })),
     allowNull: false,
   })
-  password: string;
-
-  @ApiProperty()
-  @Column({
-    type: DataType.INTEGER.UNSIGNED,
-    allowNull: false,
-  })
-  age: number;
-
-  @ApiProperty()
-  @Column({
-    type: DataType.BOOLEAN,
-    allowNull: false,
-  })
-  isDeleted: boolean;
+  permissions: Permission[];
 
   // Specifies the n:m relationship between the Users table and Groups table.
-  @BelongsToMany(() => Group, () => UserGroup, 'userId')
-  group: Group;
+  @BelongsToMany(() => User, () => UserGroup, 'groupId')
+  user: User;
 }
