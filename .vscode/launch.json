@@ -7,15 +7,34 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Debug",
-            "skipFiles": [
-                "node_modules/**",
-                "dist/**",
+            "name": "Debug Nest.js",
+            "args": [
+                "${workspaceFolder}/src/main.ts",
             ],
-            "program": "${workspaceFolder}/src/main.ts",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
+            "runtimeArgs": [
+                "--nolazy",
+                "-r",
+                "ts-node/register",
+                "-r",
+                "tsconfig-paths/register",
+            ],
+            "skipFiles": [
+                "${workspaceFolder}/dist/**",
+                "<node_internals>/**",
+            ],
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
+            "internalConsoleOptions": "openOnSessionStart",
+            "console": "internalConsole",
+            "outputCapture": "std",
+            "autoAttachChildProcesses": true,
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Debug by Attaching to Node.js Pocess",
+            "processId": "${command:PickProcess}",
         }
     ]
 }
