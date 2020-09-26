@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Debug Nest.js",
+            "name": "Debug",
             "args": [
                 "${workspaceFolder}/src/main.ts",
             ],
@@ -33,7 +33,7 @@
         {
             "type": "node",
             "request": "attach",
-            "name": "Debug by Attaching to Node.js Pocess",
+            "name": "Attach Debugger",
             "processId": "${command:PickProcess}",
         }
     ]

@@ -1,4 +1,3 @@
 {
-    "debug.node.autoAttach": "on",
     "debug.javascript.autoAttachFilter": "smart"
 }
