@@ -11,9 +11,7 @@
     "baseUrl": "./",
     "incremental": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
     "pretty": true,
-    "strict": true,
     "resolveJsonModule": true,
   },
   "exclude": ["node_modules", "dist"]
