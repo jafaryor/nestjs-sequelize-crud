@@ -17,7 +17,7 @@ export class DoesUserExist implements CanActivate {
   constructor(private readonly userService: UsersService) {}
 
   canActivate(
-    context: ExecutionContext,
+    context: ExecutionContext
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
 

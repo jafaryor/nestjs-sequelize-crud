@@ -2,8 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { GroupsService } from './groups.service';
 import { groupsProviders } from './groups.providers';
-import {UsersModule} from '../users/users.module';
-
+import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [UsersModule],

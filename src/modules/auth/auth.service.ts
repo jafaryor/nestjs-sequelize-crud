@@ -8,7 +8,7 @@ import { UsersService } from '../users/users.service';
 export class AuthService {
   constructor(
     private readonly userService: UsersService,
-    private readonly jwtService: JwtService,
+    private readonly jwtService: JwtService
   ) {}
 
   /**
@@ -72,7 +72,7 @@ export class AuthService {
   }
 
   /**
-   * Generates a token and then returns it.
+   * Generates a JWT token and then returns it.
    */
   private async generateToken(user) {
     const token = await this.jwtService.signAsync(user);

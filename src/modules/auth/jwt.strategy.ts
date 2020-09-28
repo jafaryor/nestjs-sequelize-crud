@@ -39,7 +39,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
     if (!user) {
       throw new UnauthorizedException(
-        'You are not authorized to perform the operation',
+        'You are not authorized to perform the operation'
       );
     }
 

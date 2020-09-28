@@ -6,12 +6,11 @@ import { GroupDto } from './dto/group.dto';
 import { GROUP_REPOSITORY, USER_REPOSITORY } from '../../core/constants';
 import { UserGroupDto } from '../user-groups/dto/user-group.dto';
 
-
 @Injectable()
 export class GroupsService {
   constructor(
     @Inject(GROUP_REPOSITORY) private readonly groupRepository: typeof Group,
-    private readonly userService: UsersService,
+    private readonly userService: UsersService
   ) {}
 
   /**
@@ -45,7 +44,7 @@ export class GroupsService {
       [updatedGroup],
     ] = await this.groupRepository.update(
       { ...group },
-      { where: { id }, returning: true },
+      { where: { id }, returning: true }
     );
 
     return { numberOfAffectedRows, updatedGroup };
@@ -63,7 +62,9 @@ export class GroupsService {
    */
   async addUsersToGroup(userGroups: UserGroupDto): Promise<boolean> {
     const users = await this.userService.findAllByIds(userGroups.userIds);
-    const group = await this.groupRepository.findOne({where: {id: userGroups.groupId}});
+    const group = await this.groupRepository.findOne({
+      where: { id: userGroups.groupId },
+    });
 
     if (!users || !group) return false;
 

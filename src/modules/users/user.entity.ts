@@ -1,8 +1,13 @@
-import { Table, Column, Model, DataType, BelongsToMany } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  BelongsToMany,
+} from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
 import { Group } from '../groups/group.entity';
 import { UserGroup } from '../user-groups/user-group.entity';
-
 
 @Table({
   // The table name in database.

@@ -1,4 +1,11 @@
-import { IsNotEmpty, ArrayNotEmpty, IsInt, IsAlpha, IsPositive, IsEnum } from 'class-validator';
+import {
+  IsNotEmpty,
+  ArrayNotEmpty,
+  IsInt,
+  IsAlpha,
+  IsPositive,
+  IsEnum,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export enum Permission {
@@ -25,7 +32,9 @@ export class GroupDto {
   @ArrayNotEmpty()
   @IsEnum(Permission, {
     each: true,
-    message: `Permission values must be set from predefined values: ${Object.values(Permission).join(' | ')}`,
+    message: `Permission values must be set from predefined values: ${Object.values(
+      Permission
+    ).join(' | ')}`,
   })
   readonly permissions: Permission[];
 }

@@ -1,4 +1,14 @@
-import { IsNotEmpty, MinLength, Min, Max, IsInt, IsBoolean, IsString, IsAlphanumeric, IsPositive } from 'class-validator';
+import {
+  IsNotEmpty,
+  MinLength,
+  Min,
+  Max,
+  IsInt,
+  IsBoolean,
+  IsString,
+  IsAlphanumeric,
+  IsPositive,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UserDto {

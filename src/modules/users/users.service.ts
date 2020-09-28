@@ -8,7 +8,7 @@ import { USER_REPOSITORY } from '../../core/constants';
 @Injectable()
 export class UsersService {
   constructor(
-    @Inject(USER_REPOSITORY) private readonly userRepository: typeof User,
+    @Inject(USER_REPOSITORY) private readonly userRepository: typeof User
   ) {}
 
   /**
@@ -22,7 +22,7 @@ export class UsersService {
    * Returns all the users with the specific ids from DB.
    */
   async findAllByIds(userIds: number[]): Promise<User[]> {
-    return await this.userRepository.findAll({where: {id: userIds}});
+    return await this.userRepository.findAll({ where: { id: userIds } });
   }
 
   /**
@@ -47,10 +47,10 @@ export class UsersService {
       where: {
         login: {
           [Op.substring]: login,
-        }
+        },
       },
       order: ['login'],
-      limit
+      limit,
     });
   }
 
@@ -71,7 +71,7 @@ export class UsersService {
       [updatedUser],
     ] = await this.userRepository.update(
       { ...user },
-      { where: { id }, returning: true },
+      { where: { id }, returning: true }
     );
 
     return { numberOfAffectedRows, updatedUser };
@@ -93,7 +93,7 @@ export class UsersService {
       [updatedUser],
     ] = await this.userRepository.update(
       { isDeleted: true },
-      { where: { id }, returning: true },
+      { where: { id }, returning: true }
     );
 
     return numberOfAffectedRows;

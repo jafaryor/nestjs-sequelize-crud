@@ -6,7 +6,6 @@ import { User } from '../../modules/users/user.entity';
 import { Group } from '../../modules/groups/group.entity';
 import { UserGroup } from '../../modules/user-groups/user-group.entity';
 
-
 export const databaseProviders = [
   {
     provide: SEQUELIZE,

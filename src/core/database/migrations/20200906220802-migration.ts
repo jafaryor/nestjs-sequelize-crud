@@ -1,7 +1,6 @@
 import { QueryInterface, DataTypes } from 'sequelize';
 import { Permission } from '../../../modules/groups/dto/group.dto';
 
-
 /**
  * db:migrate
  * Creates the necessary tables.
@@ -53,7 +52,7 @@ export async function up(query: QueryInterface) {
         type: DataTypes.INTEGER,
         references: {
           model: 'Users',
-          key: 'id'
+          key: 'id',
         },
         allowNull: false,
         onUpdate: 'cascade',
@@ -66,7 +65,7 @@ export async function up(query: QueryInterface) {
         type: DataTypes.INTEGER,
         references: {
           model: 'Users',
-          key: 'id'
+          key: 'id',
         },
         allowNull: false,
         onUpdate: 'cascade',
@@ -76,7 +75,7 @@ export async function up(query: QueryInterface) {
         type: DataTypes.INTEGER,
         references: {
           model: 'Groups',
-          key: 'id'
+          key: 'id',
         },
         allowNull: false,
         onUpdate: 'cascade',
@@ -101,4 +100,3 @@ export async function down(query: QueryInterface) {
     return Promise.reject(e);
   }
 }
-
