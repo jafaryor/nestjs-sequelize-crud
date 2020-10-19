@@ -19,7 +19,8 @@
     "jsonwebtoken",
     "passport",
     "swagger",
-    "jest"
+    "jest",
+    "husky"
   ],
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",

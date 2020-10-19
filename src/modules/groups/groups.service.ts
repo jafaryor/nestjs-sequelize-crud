@@ -3,7 +3,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { Group } from './group.entity';
 import { UsersService } from '../users/users.service';
 import { GroupDto } from './dto/group.dto';
-import { GROUP_REPOSITORY, USER_REPOSITORY } from '../../core/constants';
+import { GROUP_REPOSITORY } from '../../core/constants';
 import { UserGroupDto } from '../user-groups/dto/user-group.dto';
 
 @Injectable()
