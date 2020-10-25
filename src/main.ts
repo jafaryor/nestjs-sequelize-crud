@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-
+import * as helmet from 'helmet';
 import { setupSwagger } from './swagger';
 import { AppModule } from './app.module';
 import { ValidateInputPipe } from './core/pipes/validate.pipe';
@@ -40,6 +40,10 @@ async function bootstrap() {
 
   // Enables the API docs auto-generation.
   setupSwagger(app);
+  // Use helmet for security.
+  app.use(helmet());
+  // Enable CORS.
+  app.enableCors();
 
   await app.listen(3000);
 }
