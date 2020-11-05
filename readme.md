@@ -13,7 +13,7 @@ Write a simple REST service with CRUD operations for User entity.•To create RE
 
 ## Installation
 ```bash
-$ git clone https://github.com/onwuvic/nest-blog-api.git
+$ git clone https://github.com/jafaryor/nestjs-sequelize-crud.git
 ```
 
 
@@ -52,7 +52,7 @@ $ npm run db:seed-dev
 
 
 ## Swagger API docs
-This project uses the Nest swagger module for API documentation. [NestJS Swagger](https://github.com/nestjs/swagger) - [www.swagger.io](https://swagger.io/)  
+This project uses the Nest swagger module for API documentation. [NestJS Swagger](https://github.com/nestjs/swagger) - [www.swagger.io](https://swagger.io/)
 Swagger docs will be available at __[localhost:3000/documentation](localhost:3000/documentation)__ after running `npm run start`.
 
 
